@@ -68,7 +68,7 @@ function App() {
                     <Map
                         mapboxAccessToken={envConfig.MAPBOX_API_KEY}
                         initialViewState={{
-                            zoom: 12,
+                            zoom: 3.5,
                             longitude: cord.longitude,
                             latitude: cord.latitude,
                         }}
