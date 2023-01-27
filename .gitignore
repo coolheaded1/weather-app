@@ -24,4 +24,4 @@ yarn-error.log*
 
 
 # files
-./keys.js
+./src/keys.js
