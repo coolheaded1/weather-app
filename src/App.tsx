@@ -32,7 +32,7 @@ function App() {
         setIsLoading(true);
         axios
             .get(
-                `${baseUrl}?q=${cord.name}&units=metric&appid=${envConfig.API_KEY}`
+                `${baseUrl}?q=${cord.name}&units=metric&appid=${process.env.REACT_APP_API_KEY}`
             )
             .then((response) => {
                 setDegree(response.data.main.feels_like);
@@ -74,7 +74,7 @@ function App() {
 
                 <div className="md:col-span-2 w-[100vw] md:w-[65vw]">
                     <Map
-                        mapboxAccessToken={envConfig.MAPBOX_API_KEY}
+                        mapboxAccessToken={process.env.REACT_APP_MAPBOX_API_KEY}
                         initialViewState={{
                             zoom: 10,
                         }}
