@@ -1,13 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { CityItemType } from "../types";
 
-type ItemType = {
-    name: string;
-    latitude: number;
-    longitude: number;
-};
-
-export const Sidebar = ({ setCord }: any) => {
+export const Sidebar = ({ setCord, setShowSidebar }: any) => {
     const [cities, setCities] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [search, setSearch] = useState("");
@@ -68,7 +63,7 @@ export const Sidebar = ({ setCord }: any) => {
             {isLoading ? (
                 <p className="text-sm italic">Please wait...</p>
             ) : cities.length > 0 ? (
-                cities.map((item: ItemType, index: number) => (
+                cities.map((item: CityItemType, index: number) => (
                     <div key={index}>
                         <button
                             className={`${
@@ -79,6 +74,7 @@ export const Sidebar = ({ setCord }: any) => {
                             onClick={() => {
                                 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                                 setCurrentName(item.name);
+                                setShowSidebar(false);
                                 setCord({
                                     longitude: item.longitude,
                                     latitude: item.latitude,
