@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { Sidebar } from "./components";
 import Map, { Marker, Popup } from "react-map-gl";
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax, @typescript-eslint/no-unused-vars
+import mapboxgl from "!mapbox-gl";
 
 import { envConfig } from "./keys";
 import "mapbox-gl/dist/mapbox-gl.css";

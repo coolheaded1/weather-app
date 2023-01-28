@@ -22,40 +22,41 @@ export const Sidebar = ({ setCord, setShowSidebar }: any) => {
                     setIsLoading(false);
                 })
                 .catch((error) => {
-                    console.log(error);
                     setIsLoading(false);
                 });
         })();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const handleSearch = async () => {
-        setIsLoading(true);
-        await axios
-            .get(
-                `https://api.api-ninjas.com/v1/city?country=ng&limit=20&name=${search}`,
-                {
-                    headers: {
-                        "X-Api-Key": "ARXs7M9sQz29WlNR//iGrA==9Zn6IZcZgFFxIhe9",
-                    },
-                }
-            )
-            .then((response) => {
-                setCities(response.data);
-                setIsLoading(false);
-            })
-            .catch((error) => {
-                console.log(error);
-                setIsLoading(false);
-            });
-    };
+    useEffect(() => {
+        (async () => {
+            setIsLoading(true);
+            await axios
+                .get(
+                    `https://api.api-ninjas.com/v1/city?country=ng&limit=20&name=${search}`,
+                    {
+                        headers: {
+                            "X-Api-Key":
+                                "ARXs7M9sQz29WlNR//iGrA==9Zn6IZcZgFFxIhe9",
+                        },
+                    }
+                )
+                .then((response) => {
+                    setCities(response.data);
+                    setIsLoading(false);
+                })
+                .catch((error) => {
+                    setIsLoading(false);
+                });
+        })();
+    }, [search]);
 
     return (
         <div>
             <input
-                className="p-2 w-full focus:outline-none rounded-lg bg-gray-300 mb-5"
-                onKeyUp={handleSearch}
+                className="p-2 w-full focus:outline-none rounded-lg bg-gray-200 mb-5"
                 value={search}
+                type="search"
                 placeholder="Search"
                 onChange={(e) => setSearch(e.target.value)}
             />
@@ -68,8 +69,8 @@ export const Sidebar = ({ setCord, setShowSidebar }: any) => {
                         <button
                             className={`${
                                 currentName === item.name
-                                    ? "bg-black/30 "
-                                    : "bg-gray-300 "
+                                    ? "bg-gray-400/60 "
+                                    : "bg-gray-200 "
                             }w-full my-1 p-2 rounded-lg font-normal hover:bg-gray-400/60`}
                             onClick={() => {
                                 // eslint-disable-next-line @typescript-eslint/no-unused-expressions
